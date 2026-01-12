@@ -61,17 +61,17 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16 items-center">
                 <!-- Logo -->
-                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer" onclick="showHome()">
+                <a href="#" class="flex-shrink-0 flex items-center gap-2 cursor-pointer no-underline">
                     <div class="bg-brand-600 text-white p-1.5 rounded-lg">
                         <i class="fa-solid fa-layer-group text-xl"></i>
                     </div>
                     <span class="font-bold text-2xl tracking-tight text-gray-900">Value<span class="text-brand-600">Viper</span></span>
-                </div>
+                </a>
 
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex space-x-8">
-                    <a href="javascript:void(0)" onclick="showHome()" class="text-gray-600 hover:text-brand-600 font-medium transition">Home</a>
-                    <a href="javascript:void(0)" onclick="showHome()" class="text-gray-600 hover:text-brand-600 font-medium transition">Featured Blogs</a>
+                    <a href="#" class="text-gray-600 hover:text-brand-600 font-medium transition">Home</a>
+                    <a href="#featured-blogs" class="text-gray-600 hover:text-brand-600 font-medium transition">Featured Blogs</a>
                     <a href="#newsletter" class="text-gray-600 hover:text-brand-600 font-medium transition">Subscribe</a>
                 </div>
 
@@ -91,8 +91,8 @@
         <!-- Mobile Menu Panel -->
         <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="javascript:void(0)" onclick="showHome()" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-600 hover:bg-gray-50">Home</a>
-                <a href="javascript:void(0)" onclick="showHome()" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-600 hover:bg-gray-50">Featured Blogs</a>
+                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-600 hover:bg-gray-50">Home</a>
+                <a href="#featured-blogs" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-600 hover:bg-gray-50">Featured Blogs</a>
                 <a href="#newsletter" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-600 hover:bg-gray-50">Subscribe</a>
             </div>
         </div>
@@ -140,16 +140,17 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
                     <!-- Blog Post 1: Anti-Aging Creams -->
-                    <article class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden card-hover transition-all duration-300 flex flex-col h-full cursor-pointer" onclick="showArticle()">
-                        <div class="block relative h-64 overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&q=80&w=800" alt="Skincare Creams" class="w-full h-full object-cover transition duration-500 hover:scale-110">
+                    <!-- Updated to use href for routing -->
+                    <a href="#antiaging" class="block bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden card-hover transition-all duration-300 flex flex-col h-full cursor-pointer no-underline group">
+                        <div class="relative h-64 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&q=80&w=800" alt="Skincare Creams" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
                             <div class="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold shadow-sm text-brand-600 uppercase tracking-wide">
                                 Beauty
                             </div>
                         </div>
                         <div class="p-8 flex-1 flex flex-col">
-                            <h3 class="text-2xl font-bold text-gray-900 mb-3 font-serif hover:text-brand-600 transition">
-                                <span class="hover:underline">Top 5 Anti-Aging Creams That Actually Work (2026)</span>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-3 font-serif group-hover:text-brand-600 transition">
+                                Top 5 Anti-Aging Creams That Actually Work (2026)
                             </h3>
                             <p class="text-gray-600 mb-6 flex-grow prose-text">
                                 We analyzed ingredient lists, tested textures, and tracked results for 3 months. Find out which luxury and budget creams made our dermatologist-approved list.
@@ -158,21 +159,21 @@
                                 <div class="flex items-center gap-2 text-sm text-gray-500">
                                     <i class="fa-regular fa-clock"></i> 8 min read
                                 </div>
-                                <span class="text-brand-600 font-bold hover:text-brand-700 flex items-center gap-2">
+                                <span class="text-brand-600 font-bold group-hover:text-brand-700 flex items-center gap-2">
                                     Read Article <i class="fa-solid fa-arrow-right"></i>
                                 </span>
                             </div>
                         </div>
-                    </article>
+                    </a>
 
-                    <!-- Blog Post 2: Bathroom Must Haves -->
+                    <!-- Blog Post 2: Bathroom Must Haves (Placeholder link) -->
                     <article class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden card-hover transition-all duration-300 flex flex-col h-full">
-                        <a href="#" class="block relative h-64 overflow-hidden">
+                        <div class="block relative h-64 overflow-hidden">
                             <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=800" alt="Luxury Bathroom" class="w-full h-full object-cover transition duration-500 hover:scale-110">
                             <div class="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold shadow-sm text-brand-600 uppercase tracking-wide">
                                 Home & Living
                             </div>
-                        </a>
+                        </div>
                         <div class="p-8 flex-1 flex flex-col">
                             <h3 class="text-2xl font-bold text-gray-900 mb-3 font-serif hover:text-brand-600 transition">
                                 <a href="#">Top 5 Bathroom Must-Haves for a Spa-Like Experience</a>
@@ -220,12 +221,12 @@
     <article id="article-view" class="hidden pt-24 pb-20 bg-white">
         <!-- Article Header -->
         <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-            <button onclick="showHome()" class="mb-8 flex items-center text-sm font-medium text-gray-500 hover:text-brand-600 transition group">
+            <a href="#" class="mb-8 flex items-center text-sm font-medium text-gray-500 hover:text-brand-600 transition group no-underline">
                 <div class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center mr-2 group-hover:bg-brand-50">
                     <i class="fa-solid fa-arrow-left"></i>
                 </div>
                 Back to Reviews
-            </button>
+            </a>
             <span class="text-brand-600 font-bold tracking-wide uppercase text-sm">Beauty & Skincare</span>
             <h1 class="mt-2 text-3xl sm:text-4xl font-bold text-gray-900 font-serif leading-tight">Top 5 Anti-Aging Creams That Actually Work (2026 Edition)</h1>
             <div class="flex flex-wrap items-center gap-4 mt-6 mb-8 text-sm text-gray-500 border-b border-gray-100 pb-8">
@@ -363,9 +364,9 @@
             <h3 class="text-2xl font-bold font-serif mb-4">The Verdict</h3>
             <p class="mb-8">Choosing the right product ultimately depends on your specific skin concerns. For deep wrinkles, we recommend the <strong>Murad Superactive Moisturiser (#1)</strong>. For general brightness and value, the <strong>Facetheory Glow-C (#2)</strong> is a fantastic daily option. Remember, consistency is key!</p>
             
-            <button onclick="showHome()" class="text-brand-600 font-bold hover:underline">
+            <a href="#" class="text-brand-600 font-bold hover:underline no-underline">
                 <i class="fa-solid fa-arrow-left mr-1"></i> Back to all reviews
-            </button>
+            </a>
         </div>
     </article>
 
@@ -428,18 +429,36 @@
             menu.classList.toggle('hidden');
         }
 
-        // SPA Navigation Logic
-        function showArticle() {
-            document.getElementById('home-view').classList.add('hidden');
-            document.getElementById('article-view').classList.remove('hidden');
-            window.scrollTo(0, 0);
+        // Routing Logic
+        function handleRouting() {
+            const hash = window.location.hash;
+            const homeView = document.getElementById('home-view');
+            const articleView = document.getElementById('article-view');
+            
+            // Check if hash matches the anti-aging article
+            if (hash === '#antiaging') {
+                homeView.classList.add('hidden');
+                articleView.classList.remove('hidden');
+                window.scrollTo(0, 0);
+            } else {
+                // Default to home view for all other cases (including empty hash or #home)
+                articleView.classList.add('hidden');
+                homeView.classList.remove('hidden');
+                
+                // If hash is just # or empty, scroll to top
+                if (hash === '' || hash === '#') {
+                    window.scrollTo(0, 0);
+                }
+                // Note: If hash is #featured-blogs, the browser will automatically scroll 
+                // to that ID after we reveal the home view, which is the desired behavior.
+            }
         }
 
-        function showHome() {
-            document.getElementById('article-view').classList.add('hidden');
-            document.getElementById('home-view').classList.remove('hidden');
-            window.scrollTo(0, 0);
-        }
+        // Listen for hash changes (handling back/forward buttons)
+        window.addEventListener('hashchange', handleRouting);
+        
+        // Handle initial load
+        window.addEventListener('DOMContentLoaded', handleRouting);
 
         // Navbar Scroll Effect
         window.addEventListener('scroll', () => {
