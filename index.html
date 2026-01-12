@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ValueViper - Honest Reviews & Best Deals</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#16a34a', // Slightly darker green for trust/blog feel
+                            600: '#15803d',
+                            900: '#14532d',
+                        },
+                        accent: {
+                            500: '#f59e0b', // Amber for gold/stars
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; }
+        .fade-in { animation: fadeIn 0.5s ease-in; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+        }
+        /* Prose typography for better reading experience */
+        .prose-text {
+            line-height: 1.75;
+            color: #374151;
+        }
+        .hidden { display: none; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased flex flex-col min-h-screen">
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm fixed w-full z-50 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer" onclick="showHome()">
+                    <div class="bg-brand-600 text-white p-1.5 rounded-lg">
+                        <i class="fa-solid fa-layer-group text-xl"></i>
+                    </div>
+                    <span class="font-bold text-2xl tracking-tight text-gray-900">Value<span class="text-brand-600">Viper</span></span>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="javascript:void(0)" onclick="showHome()" class="text-gray-600 hover:text-brand-600 font-medium transition">Home</a>
+                    <a href="javascript:void(0)" onclick="showHome()" class="text-gray-600 hover:text-brand-600 font-medium transition">Featured Blogs</a>
+                    <a href="#newsletter" class="text-gray-600 hover:text-brand-600 font-medium transition">Subscribe</a>
+                </div>
+
+                <!-- Right Icons -->
+                <div class="flex items-center space-x-5">
+                    <button class="text-gray-500 hover:text-brand-600 transition">
+                        <i class="fa-solid fa-magnifying-glass text-lg"></i>
+                    </button>
+                    <!-- Mobile menu button -->
+                    <button class="md:hidden text-gray-500 hover:text-gray-900 focus:outline-none" onclick="toggleMobileMenu()">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="javascript:void(0)" onclick="showHome()" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-600 hover:bg-gray-50">Home</a>
+                <a href="javascript:void(0)" onclick="showHome()" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-600 hover:bg-gray-50">Featured Blogs</a>
+                <a href="#newsletter" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-600 hover:bg-gray-50">Subscribe</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- WRAPPER FOR HOME CONTENT -->
+    <div id="home-view">
+        <!-- Hero Section -->
+        <section id="hero" class="pt-24 pb-12 sm:pt-32 sm:pb-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto fade-in">
+                    <div class="inline-flex items-center px-3 py-1 rounded-full text-sm font-semibold bg-brand-50 text-brand-700 mb-6 border border-brand-100">
+                        <span class="w-2 h-2 bg-brand-500 rounded-full mr-2"></span> Updated for 2026
+                    </div>
+                    <h1 class="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl mb-6 font-serif">
+                        We research the products,<br>
+                        <span class="text-brand-600">so you don't have to.</span>
+                    </h1>
+                    <p class="mt-4 text-xl text-gray-500 mb-8 prose-text">
+                        Unbiased reviews and curated "top 5" lists for the things you use every day. We help you find the best value for your money.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="#featured-blogs" class="px-8 py-3 rounded-lg bg-brand-600 text-white font-semibold hover:bg-brand-700 transition shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                            Read Latest Posts
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Affiliate Disclosure Banner -->
+        <div class="bg-gray-50 border-y border-gray-200 py-3">
+            <div class="max-w-7xl mx-auto px-4 text-center text-xs text-gray-500">
+                <i class="fa-solid fa-circle-info mr-1"></i> Transparency: We may earn a commission when you buy through our links. <a href="#" class="underline hover:text-gray-700">Learn more</a>.
+            </div>
+        </div>
+
+        <!-- Featured Blogs Section -->
+        <section id="featured-blogs" class="py-16 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-900 font-serif">Curated Lists & Reviews</h2>
+                    <p class="mt-4 text-gray-600 max-w-2xl mx-auto">Discover our top picks for the products that make life better.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                    <!-- Blog Post 1: Anti-Aging Creams -->
+                    <article class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden card-hover transition-all duration-300 flex flex-col h-full cursor-pointer" onclick="showArticle()">
+                        <div class="block relative h-64 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&q=80&w=800" alt="Skincare Creams" class="w-full h-full object-cover transition duration-500 hover:scale-110">
+                            <div class="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold shadow-sm text-brand-600 uppercase tracking-wide">
+                                Beauty
+                            </div>
+                        </div>
+                        <div class="p-8 flex-1 flex flex-col">
+                            <h3 class="text-2xl font-bold text-gray-900 mb-3 font-serif hover:text-brand-600 transition">
+                                <span class="hover:underline">Top 5 Anti-Aging Creams That Actually Work (2026)</span>
+                            </h3>
+                            <p class="text-gray-600 mb-6 flex-grow prose-text">
+                                We analyzed ingredient lists, tested textures, and tracked results for 3 months. Find out which luxury and budget creams made our dermatologist-approved list.
+                            </p>
+                            <div class="mt-auto pt-6 border-t border-gray-100 flex items-center justify-between">
+                                <div class="flex items-center gap-2 text-sm text-gray-500">
+                                    <i class="fa-regular fa-clock"></i> 8 min read
+                                </div>
+                                <span class="text-brand-600 font-bold hover:text-brand-700 flex items-center gap-2">
+                                    Read Article <i class="fa-solid fa-arrow-right"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Blog Post 2: Bathroom Must Haves -->
+                    <article class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden card-hover transition-all duration-300 flex flex-col h-full">
+                        <a href="#" class="block relative h-64 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=800" alt="Luxury Bathroom" class="w-full h-full object-cover transition duration-500 hover:scale-110">
+                            <div class="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold shadow-sm text-brand-600 uppercase tracking-wide">
+                                Home & Living
+                            </div>
+                        </a>
+                        <div class="p-8 flex-1 flex flex-col">
+                            <h3 class="text-2xl font-bold text-gray-900 mb-3 font-serif hover:text-brand-600 transition">
+                                <a href="#">Top 5 Bathroom Must-Haves for a Spa-Like Experience</a>
+                            </h3>
+                            <p class="text-gray-600 mb-6 flex-grow prose-text">
+                                Upgrade your daily routine without a full renovation. From bamboo organizers to high-pressure rainfall showerheads, these items transform your space instantly.
+                            </p>
+                            <div class="mt-auto pt-6 border-t border-gray-100 flex items-center justify-between">
+                                <div class="flex items-center gap-2 text-sm text-gray-500">
+                                    <i class="fa-regular fa-clock"></i> 6 min read
+                                </div>
+                                <a href="#" class="text-brand-600 font-bold hover:text-brand-700 flex items-center gap-2">
+                                    Read Article <i class="fa-solid fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                
+                <div class="text-center mt-12">
+                    <p class="text-gray-500 italic">More reviews and lists are being curated by our editors. Check back soon!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter -->
+        <section id="newsletter" class="py-20 bg-brand-900 text-white relative overflow-hidden">
+            <!-- Abstract Decoration -->
+            <div class="absolute top-0 right-0 -mr-20 -mt-20 w-80 h-80 rounded-full bg-brand-800 opacity-50 blur-3xl"></div>
+            <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 rounded-full bg-brand-800 opacity-50 blur-3xl"></div>
+
+            <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
+                <h2 class="text-3xl font-bold mb-4 font-serif">Get Smarter About Spending</h2>
+                <p class="text-brand-100 mb-8 text-lg">Join 50,000+ readers. Get our weekly "Best Value" picks and exclusive discount codes delivered to your inbox.</p>
+                <form class="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto" onsubmit="event.preventDefault(); alert('Thanks for subscribing!');">
+                    <input type="email" placeholder="Enter your email address" class="flex-1 px-5 py-3 rounded-lg text-gray-900 border-none shadow-lg focus:ring-2 focus:ring-brand-500 outline-none" required>
+                    <button type="submit" class="px-8 py-3 bg-accent-500 text-white font-bold rounded-lg hover:bg-yellow-500 transition shadow-lg">Subscribe Free</button>
+                </form>
+                <p class="text-xs text-brand-200 mt-4 opacity-70">No spam, unsubscribe anytime. We respect your privacy.</p>
+            </div>
+        </section>
+    </div>
+
+    <!-- NEW: HIDDEN ARTICLE VIEW -->
+    <article id="article-view" class="hidden pt-24 pb-20 bg-white">
+        <!-- Article Header -->
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <button onclick="showHome()" class="mb-8 flex items-center text-sm font-medium text-gray-500 hover:text-brand-600 transition group">
+                <div class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center mr-2 group-hover:bg-brand-50">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </div>
+                Back to Reviews
+            </button>
+            <span class="text-brand-600 font-bold tracking-wide uppercase text-sm">Beauty & Skincare</span>
+            <h1 class="mt-2 text-3xl sm:text-4xl font-bold text-gray-900 font-serif leading-tight">Top 5 Anti-Aging Creams That Actually Work (2026 Edition)</h1>
+            <div class="flex flex-wrap items-center gap-4 mt-6 mb-8 text-sm text-gray-500 border-b border-gray-100 pb-8">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center text-gray-500 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=100" alt="Author">
+                    </div>
+                    <span class="font-medium text-gray-900">Sarah Jenkins</span>
+                </div>
+                <span>•</span>
+                <span>Updated Jan 12, 2026</span>
+                <span>•</span>
+                <span>8 min read</span>
+            </div>
+        </div>
+
+        <!-- REMOVED HERO IMAGE -->
+
+        <!-- Article Content -->
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 prose-text text-lg">
+            <p class="mb-6 font-medium text-xl text-gray-600">Finding the right anti-aging cream can feel like finding a needle in a haystack. With thousands of products promising to erase wrinkles overnight, how do you know which ones are worth the investment?</p>
+            
+            <p class="mb-10">In 2026, skincare technology has advanced significantly, focusing on barrier repair and peptide innovation. We tested 30 top-rated creams over a 12-week period, tracking skin hydration, texture improvement, and fine line reduction. Here are the 5 that stood out.</p>
+
+            <!-- Product 1 -->
+            <div class="mb-12 p-6 bg-gray-50 rounded-xl border border-gray-100 shadow-sm">
+                <div class="flex flex-col sm:flex-row justify-between items-start mb-4 gap-2">
+                    <h2 class="text-2xl font-bold text-gray-900 font-serif">1. Murad Superactive Moisturiser SPF</h2>
+                    <span class="bg-brand-100 text-brand-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Best Anti-Ageing Day Cream Overall</span>
+                </div>
+                <img src="https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?auto=format&fit=crop&q=80&w=800" alt="Murad Cream" class="w-full h-64 object-cover rounded-lg mb-6">
+                <p class="mb-4">This powerhouse takes our top spot because it solves the biggest problem in anti-aging: consistency. By combining potent hydration with broad-spectrum SPF, it ensures you are protecting your skin from future damage while correcting past signs of aging. It's the ultimate "one-and-done" morning step.</p>
+                <div class="bg-white p-4 rounded-lg border border-gray-200 mb-6">
+                    <h4 class="font-bold text-sm text-gray-900 mb-2 uppercase">Why we love it:</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li class="flex items-start"><i class="fa-solid fa-check text-brand-500 mt-1 mr-2"></i> Perfect balance of treatment and protection</li>
+                        <li class="flex items-start"><i class="fa-solid fa-check text-brand-500 mt-1 mr-2"></i> Lightweight formula, no white cast</li>
+                        <li class="flex items-start"><i class="fa-solid fa-check text-brand-500 mt-1 mr-2"></i> Improves skin texture visibly</li>
+                    </ul>
+                </div>
+                <a href="#" class="inline-flex justify-center items-center w-full bg-gray-900 text-white font-bold py-3 rounded-lg hover:bg-gray-800 transition">
+                    Check Price <i class="fa-solid fa-up-right-from-square ml-2 text-xs"></i>
+                </a>
+            </div>
+
+            <!-- Product 2 -->
+             <div class="mb-12 p-6 bg-gray-50 rounded-xl border border-gray-100 shadow-sm">
+                <div class="flex flex-col sm:flex-row justify-between items-start mb-4 gap-2">
+                    <h2 class="text-2xl font-bold text-gray-900 font-serif">2. Facetheory Glow-C Daily Moisturiser</h2>
+                    <span class="bg-blue-100 text-blue-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Best Budget Anti-Ageing Day Cream</span>
+                </div>
+                <img src="https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&q=80&w=800" alt="Facetheory Cream" class="w-full h-64 object-cover rounded-lg mb-6">
+                <p class="mb-4">You don't have to break the bank to get effective ingredients. Facetheory proves that top-tier Vitamin C can be affordable. This day cream punches well above its weight class, delivering stabilized Vitamin C to brighten dullness and fight free radicals without the luxury markup.</p>
+                 <div class="bg-white p-4 rounded-lg border border-gray-200 mb-6">
+                    <h4 class="font-bold text-sm text-gray-900 mb-2 uppercase">Why we love it:</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li class="flex items-start"><i class="fa-solid fa-check text-brand-500 mt-1 mr-2"></i> Incredible value for active ingredients</li>
+                        <li class="flex items-start"><i class="fa-solid fa-check text-brand-500 mt-1 mr-2"></i> Stabilized Vitamin C formula</li>
+                         <li class="flex items-start"><i class="fa-solid fa-check text-brand-500 mt-1 mr-2"></i> Cruelty-free and vegan</li>
+                    </ul>
+                </div>
+                <a href="#" class="inline-flex justify-center items-center w-full bg-gray-900 text-white font-bold py-3 rounded-lg hover:bg-gray-800 transition">
+                    Check Price <i class="fa-solid fa-up-right-from-square ml-2 text-xs"></i>
+                </a>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="mb-12 p-6 bg-gray-50 rounded-xl border border-gray-100 shadow-sm">
+                <div class="flex flex-col sm:flex-row justify-between items-start mb-4 gap-2">
+                    <h2 class="text-2xl font-bold text-gray-900 font-serif">3. Dr. Idriss Major Fade Active Seal</h2>
+                    <span class="bg-purple-100 text-purple-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Best Anti-Ageing Day Cream for Pigmentation</span>
+                </div>
+                <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&q=80&w=800" alt="Dr. Idriss Cream" class="w-full h-64 object-cover rounded-lg mb-6">
+                <p class="mb-4">Sun spots and melasma are some of the hardest signs of aging to treat. Dr. Idriss's formula is specifically engineered to target pigmentation at the source. This "active seal" locks in treatment and prevents new spots from forming, making it the clear winner for uneven skin tone.</p>
+                <div class="bg-white p-4 rounded-lg border border-gray-200 mb-6">
+                    <h4 class="font-bold text-sm text-gray-900 mb-2 uppercase">Why we love it:</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li class="flex items-start"><i class="fa-solid fa-check text-brand-500 mt-1 mr-2"></i> Clinically proven to fade dark spots</li>
+                        <li class="flex items-start"><i class="fa-solid fa-check text-brand-500 mt-1 mr-2"></i> Seals in other skincare layers</li>
+                        <li class="flex items-start"><i class="fa-solid fa-check text-brand-500 mt-1 mr-2"></i> Dermatologist-formulated</li>
+                    </ul>
+                </div>
+                <a href="#" class="inline-flex justify-center items-center w-full bg-gray-900 text-white font-bold py-3 rounded-lg hover:bg-gray-800 transition">
+                    Check Price <i class="fa-solid fa-up-right-from-square ml-2 text-xs"></i>
+                </a>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="mb-12 p-6 bg-gray-50 rounded-xl border border-gray-100 shadow-sm">
+                <div class="flex flex-col sm:flex-row justify-between items-start mb-4 gap-2">
+                    <h2 class="text-2xl font-bold text-gray-900 font-serif">4. Elemis Pro-Collagen Marine Cream SPF 30</h2>
+                    <span class="bg-green-100 text-green-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Best Luxury Anti-Ageing Day Cream</span>
+                </div>
+                <img src="https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?auto=format&fit=crop&q=80&w=800" alt="Elemis Cream" class="w-full h-64 object-cover rounded-lg mb-6">
+                <p class="mb-4">If you want your skincare routine to feel like a spa day, this is the one. Elemis justifies its price tag with a texture that is simply unmatched—silky, lightweight, and instantly absorbing. It delivers intense hydration via marine algae while protecting with SPF 30, offering a truly premium experience.</p>
+                <div class="bg-white p-4 rounded-lg border border-gray-200 mb-6">
+                    <h4 class="font-bold text-sm text-gray-900 mb-2 uppercase">Why we love it:</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li class="flex items-start"><i class="fa-solid fa-check text-brand-500 mt-1 mr-2"></i> Unmatched silky texture</li>
+                        <li class="flex items-start"><i class="fa-solid fa-check text-brand-500 mt-1 mr-2"></i> Clinically proven to reduce lines</li>
+                        <li class="flex items-start"><i class="fa-solid fa-check text-brand-500 mt-1 mr-2"></i> Contains Padina Pavonica</li>
+                    </ul>
+                </div>
+                <a href="#" class="inline-flex justify-center items-center w-full bg-gray-900 text-white font-bold py-3 rounded-lg hover:bg-gray-800 transition">
+                    Check Price <i class="fa-solid fa-up-right-from-square ml-2 text-xs"></i>
+                </a>
+            </div>
+
+            <!-- Product 5 -->
+            <div class="mb-12 p-6 bg-gray-50 rounded-xl border border-gray-100 shadow-sm">
+                <div class="flex flex-col sm:flex-row justify-between items-start mb-4 gap-2">
+                    <h2 class="text-2xl font-bold text-gray-900 font-serif">5. Lancôme Rénergie HPN UVmune SPF 50 Cream</h2>
+                    <span class="bg-yellow-100 text-yellow-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Best Anti-Ageing Day Cream for Fine Lines & Wrinkles</span>
+                </div>
+                <img src="https://images.unsplash.com/photo-1590439471364-192aa70c0b53?auto=format&fit=crop&q=80&w=800" alt="Lancôme Cream" class="w-full h-64 object-cover rounded-lg mb-6">
+                <p class="mb-4">When it comes to visibly smoothing out etched-in lines, this cream is a heavy hitter. The combination of high-performance peptides and robust SPF 50 ensures that existing wrinkles are treated while the skin is shielded from the UV damage that deepens them. It's our top pick for mature skin needing serious correction.</p>
+                <div class="bg-white p-4 rounded-lg border border-gray-200 mb-6">
+                    <h4 class="font-bold text-sm text-gray-900 mb-2 uppercase">Why we love it:</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li class="flex items-start"><i class="fa-solid fa-check text-brand-500 mt-1 mr-2"></i> High SPF 50 protection prevents worsening</li>
+                        <li class="flex items-start"><i class="fa-solid fa-check text-brand-500 mt-1 mr-2"></i> Specifically targets depth of wrinkles</li>
+                        <li class="flex items-start"><i class="fa-solid fa-check text-brand-500 mt-1 mr-2"></i> Peptide-enriched formula</li>
+                    </ul>
+                </div>
+                <a href="#" class="inline-flex justify-center items-center w-full bg-gray-900 text-white font-bold py-3 rounded-lg hover:bg-gray-800 transition">
+                    Check Price <i class="fa-solid fa-up-right-from-square ml-2 text-xs"></i>
+                </a>
+            </div>
+
+             <div class="bg-brand-50 p-6 rounded-lg border-l-4 border-brand-500 mb-12">
+                <h3 class="font-bold text-brand-900 mb-2 flex items-center"><i class="fa-solid fa-flask mr-2"></i> Our Testing Methodology</h3>
+                <p class="text-sm text-brand-800">We do not accept paid placements for these rankings. All products were purchased by our editorial team and tested on different skin types (Oily, Dry, Combo) for a minimum of 4 weeks.</p>
+            </div>
+
+            <h3 class="text-2xl font-bold font-serif mb-4">The Verdict</h3>
+            <p class="mb-8">Choosing the right product ultimately depends on your specific skin concerns. For deep wrinkles, we recommend the <strong>Murad Superactive Moisturiser (#1)</strong>. For general brightness and value, the <strong>Facetheory Glow-C (#2)</strong> is a fantastic daily option. Remember, consistency is key!</p>
+            
+            <button onclick="showHome()" class="text-brand-600 font-bold hover:underline">
+                <i class="fa-solid fa-arrow-left mr-1"></i> Back to all reviews
+            </button>
+        </div>
+    </article>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-gray-200 pt-16 pb-8 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <h4 class="font-bold text-gray-900 mb-4">Discover</h4>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li><a href="#" class="hover:text-brand-600">Latest Posts</a></li>
+                        <li><a href="#" class="hover:text-brand-600">Best Value Deals</a></li>
+                        <li><a href="#" class="hover:text-brand-600">Editor's Choice</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-gray-900 mb-4">Categories</h4>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li><a href="#" class="hover:text-brand-600">Beauty & Skincare</a></li>
+                        <li><a href="#" class="hover:text-brand-600">Home & Living</a></li>
+                        <li><a href="#" class="hover:text-brand-600">Tech & Gadgets</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-gray-900 mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li><a href="#" class="hover:text-brand-600">About Us</a></li>
+                        <li><a href="#" class="hover:text-brand-600">Editorial Policy</a></li>
+                        <li><a href="#" class="hover:text-brand-600">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-brand-600">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-gray-900 mb-4">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-brand-600 text-xl"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-brand-600 text-xl"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-brand-600 text-xl"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-brand-600 text-xl"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-100 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
+                <p>&copy; 2026 ValueViper. All rights reserved.</p>
+                <div class="mt-4 md:mt-0 text-center md:text-right">
+                    <p class="text-xs">
+                        ValueViper is a participant in the Amazon Services LLC Associates Program.<br>
+                        As an Amazon Associate we earn from qualifying purchases.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // SPA Navigation Logic
+        function showArticle() {
+            document.getElementById('home-view').classList.add('hidden');
+            document.getElementById('article-view').classList.remove('hidden');
+            window.scrollTo(0, 0);
+        }
+
+        function showHome() {
+            document.getElementById('article-view').classList.add('hidden');
+            document.getElementById('home-view').classList.remove('hidden');
+            window.scrollTo(0, 0);
+        }
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 20) {
+                nav.classList.add('shadow-md');
+                nav.classList.remove('shadow-sm');
+            } else {
+                nav.classList.remove('shadow-md');
+                nav.classList.add('shadow-sm');
+            }
+        });
+    </script>
+</body>
+</html>
